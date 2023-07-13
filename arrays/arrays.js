@@ -95,11 +95,55 @@ class MyArray {
 
 //
 // Testing
-const array = new MyArray();
-console.log(array.get(0));
-array.push("hello");
-array.push("I");
-array.push("am");
-array.push("james");
-array.delete(1);
-array.delete(1);
+//const array = new MyArray();
+//console.log(array.get(0));
+//array.push("hello");
+//array.push("I");
+//array.push("am");
+//array.push("james");
+//array.delete(1);
+//array.delete(1);
+
+//
+//Write a function to reverse a given string
+//"Hi i am james" - input
+//"semaj ma i iH" - output
+
+function reversString(str) {
+  //
+  //Divide the string into individual characters
+  const characterArray = str.split("");
+  //
+  //
+  const reverseArray = [];
+  //
+  //Iterate over the character array creating a revers array
+  for (i = 0; i < str.split("").length; i++) {
+    //
+    //remove the last element adding it to an array
+    reverseArray.push(characterArray.pop());
+  }
+  return reverseArray.join();
+}
+//
+//
+function reverseString1(str) {
+  //
+  //Create array to hold outcome of reversing
+  const reverseArray = [];
+  //
+  //add the characters to the result array in reverse order
+  for (let i = str.split("").length; i >= 0; i--) {
+    reverseArray.push(str[i]);
+  }
+  //
+  //Return the reverse string
+  return reverseArray.join("");
+}
+//
+//Much more readable 
+function reverseString2(str) {
+  return str.split('').reverse().join('')
+}
+
+reverseString2("Hi i am james");
