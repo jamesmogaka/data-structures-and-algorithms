@@ -141,9 +141,58 @@ function reverseString1(str) {
   return reverseArray.join("");
 }
 //
-//Much more readable 
+//Much more readable
 function reverseString2(str) {
-  return str.split('').reverse().join('')
+  return str.split("").reverse().join("");
 }
 
-reverseString2("Hi i am james");
+//reverseString2("Hi i am james");
+
+//
+//Q - How can you merge two sorted arrays such that you end up with a larger sorted array
+//[0, 3, 4, 31],[4, 6, 30] - input
+//[0, 3, 4, 4, 6, 30, 31] - output
+
+//
+//Brute force solution
+function mergeSortedArrays(arr1, arr2) {
+  //
+  //Do Checks on inputs
+  //Result sorted array
+  let index = 0;
+  //
+  //Get the longest array of the two
+  if (arr1.length > arr2.length) {
+    //
+    //Iterate over it
+    for (i = 0; i < arr1.length; i++) {
+      //
+      //Compare the elements of the two arrays to get the smallest
+      if (arr1[i] >= arr2[index]) {
+        //
+        //insert an element from the second array where the arr1 element is larger
+        arr1.splice(i, 0, arr2[index]);
+        //
+        //Increment the pointer to the second array 
+        index++;
+      } else {
+        //
+        //If the element in the first array is smaller continue to the next element in the iteration
+        continue;
+      }
+    }
+  } else {
+    for (i = 0; i < arr2.length; i++) {
+      if (arr2[i] >= arr1[index]) {
+        arr2.splice(i, 0, arr1[index]);
+        index++;
+      } else {
+        continue;
+      }
+    }
+    return arr2
+  }
+  return arr1;
+}
+
+mergeSortedArrays([0, 3, 4], [4, 6, 30, 31]);
