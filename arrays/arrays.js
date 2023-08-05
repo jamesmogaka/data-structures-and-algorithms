@@ -173,7 +173,7 @@ function mergeSortedArrays(arr1, arr2) {
         //insert an element from the second array where the arr1 element is larger
         arr1.splice(i, 0, arr2[index]);
         //
-        //Increment the pointer to the second array 
+        //Increment the pointer to the second array
         index++;
       } else {
         //
@@ -182,17 +182,81 @@ function mergeSortedArrays(arr1, arr2) {
       }
     }
   } else {
+    //
+    //Iterate over it
     for (i = 0; i < arr2.length; i++) {
+      //
+      //Compare the elements of the two arrays to get the smallest
       if (arr2[i] >= arr1[index]) {
+        //
+        //insert an element from the second array where the arr1 element is larger
         arr2.splice(i, 0, arr1[index]);
+        //
+        //Increment the pointer to the second array
         index++;
       } else {
+        //
+        //If the element in the first array is smaller continue to the next element in the iteration
         continue;
       }
     }
-    return arr2
+    return arr2;
   }
   return arr1;
 }
 
-mergeSortedArrays([0, 3, 4], [4, 6, 30, 31]);
+//
+//Merge two sorted arrays retaining the merged order
+function mergeSortedArrays2(arr1, arr2) {
+  //
+  //Check the inputs
+  if (arr1.length === 0) {
+    return arr2;
+  }
+  if (arr2.length === 0) {
+    return arr1;
+  }
+  //
+  //Array to hold the resulting merged array
+  const mergedArray = [];
+  //
+  //Get the first element in both arrays
+  const arr1Value = arr1[0];
+  const arr2Value = arr2[0];
+  //
+  //Define the traversal indices
+  let index1 = 1;
+  let index2 = 1;
+  //
+  //Compare the two values from the arrays pushing the smaller one to the merged array
+  while (arr1Value || arr2Value) {
+    //
+    //Compare to get the value to push first
+    if (arr1Value || arr1Value < arr2Value) {
+      console.log(arr1Value, arr2Value);
+      //
+      //push to the merged array
+      mergedArray.push(arr1Value);
+      //
+      //Point the array value to the next element
+      arr1Value[index1];
+      //
+      //Increment the index of the corresponding array
+      index1++;
+    } else {
+      //
+      //push to merged array
+      mergedArray.push(arr2Value);
+      //
+      //Point the array value to the next element
+      arr2Value[index2];
+      //
+      //Increment index of corresponding array
+      index2++;
+    }
+  }
+  //
+  return mergedArray;
+}
+
+mergeSortedArrays2([0, 3, 4], [4, 6, 30, 31]);
