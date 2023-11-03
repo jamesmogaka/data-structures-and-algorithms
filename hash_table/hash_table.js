@@ -41,5 +41,37 @@ class myHashTable {
   }
   //
   //Develop a method to add values to the hash table
-  set() {}
+  set(key, value) {
+    //
+    //Using the hashing function generate the address to store the given key value pair
+    const address = this._hash(key);
+    //
+    //Store both the key and value in an array which will be appended to the hashtable
+    //at the specified address
+    this.data[address] = [key, value];
+  }
+  //
+  //Get a value from the hash map given a key
+  get(key) {
+    //
+    //Given a key get the address of the key
+    const address = this._hash(key);
+    //
+    //Retrive the key value pare from the hashtable
+    const pair = this.data[address];
+    //
+    //return the value of the specified key
+    return pair[1];
+  }
 }
+//
+//Usage
+//
+//Object instansiation
+const htable = new myHashTable(10);
+//
+//Add a value to the hashtable
+htable.set("grapes", 10000);
+//
+//Retrieve an item from the hashtable
+htable.get("grapes");e
