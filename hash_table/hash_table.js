@@ -34,7 +34,7 @@ class myHashTable {
   //Hash function that generates the storage address of a given key
   _hash(key) {
     let hash = 0;
-    for (i = 0; i < key.length; i++) {
+    for (let i = 0; i < key.length; i++) {
       hash = (hash + key.charCodeAt(i) * i) % this.data.length;
     }
     return hash;
@@ -46,9 +46,16 @@ class myHashTable {
     //Using the hashing function generate the address to store the given key value pair
     const address = this._hash(key);
     //
-    //Store both the key and value in an array which will be appended to the hashtable
-    //at the specified address
-    this.data[address] = [key, value];
+    //
+    //Check the given address to ensure that no data exist initially
+    if (!this.data[address]) {
+      //
+      //If no data was found at the given address create a storage bucket
+      this.data[address] = [];
+    }
+    //
+    //Now store the infomation in the given bucket
+    this.data[address].push([key, value]);
   }
   //
   //Get a value from the hash map given a key
@@ -57,11 +64,27 @@ class myHashTable {
     //Given a key get the address of the key
     const address = this._hash(key);
     //
-    //Retrive the key value pare from the hashtable
-    const pair = this.data[address];
+    //Retrive the storage bucket under the given address
+    const bucket = this.data[address];
     //
-    //return the value of the specified key
-    return pair[1];
+    //If there is no data stored in the bucket return
+    if (bucket.length < 0) return undefined;
+    //
+    //Go through all the elements stored in the bucket to locate the given key
+    return bucket.find((element) => element[0] === key)[1];
+  }
+  //
+  //Extract all the keys of the key value pairs stored in the hashmap
+  keys(){
+    //
+    //A container to hold the keys 
+    const collection = [];
+    //
+    //Iterate over the entire hash map collecting the keys
+    this.data.forEach((bucket) => );
+    //
+    //return the collection of the keys
+    return collection;
   }
 }
 //
@@ -74,4 +97,4 @@ const htable = new myHashTable(10);
 htable.set("grapes", 10000);
 //
 //Retrieve an item from the hashtable
-htable.get("grapes");e
+console.log(htable.get("grapes"));
