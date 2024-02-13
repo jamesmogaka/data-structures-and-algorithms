@@ -75,13 +75,17 @@ class myHashTable {
   }
   //
   //Extract all the keys of the key value pairs stored in the hashmap
-  keys(){
+  keys() {
     //
-    //A container to hold the keys 
+    //A container to hold the keys
     const collection = [];
     //
     //Iterate over the entire hash map collecting the keys
-    this.data.forEach((bucket) => );
+    this.data.forEach((bucket) =>
+      //
+      //Acess all the key value pairs collecting all the keys and adding them to the colleciton
+      bucket.forEach((pair) => collection.push(pair[0]))
+    );
     //
     //return the collection of the keys
     return collection;
@@ -95,6 +99,14 @@ const htable = new myHashTable(10);
 //
 //Add a value to the hashtable
 htable.set("grapes", 10000);
+htable.set("apples", 10000);
+htable.set("bananas", 10000);
+htable.set("mangoes", 10000);
+htable.set("peach", 10000);
+
 //
 //Retrieve an item from the hashtable
-console.log(htable.get("grapes"));
+// console.log(htable.get("grapes"));
+//
+//Get all the keys of the given hashmap
+console.log(htable.keys());
