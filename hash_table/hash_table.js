@@ -109,4 +109,42 @@ htable.set("peach", 10000);
 // console.log(htable.get("grapes"));
 //
 //Get all the keys of the given hashmap
-console.log(htable.keys());
+//console.log(htable.keys());
+//
+//Problem
+//Given an array indicate the first recurring number
+//
+//[2,5,1,2,3,5,1,2,4]
+//
+//Output is 2
+//
+//[2,1,1,2,3,5,1,2,4]
+//
+//Output is 1
+//
+//[2,3,4,5]
+//
+//Output is undefined
+
+function recurring(numbers /*Array<number> */) /*:number | undefined */ {
+  //
+  //A container to store all the previous values
+  const prev = {};
+  //
+  //Go trough all the values in the array one by one doing the following for each
+  for (const number of numbers) {
+    //
+    //If there is an entry of the current number in the previous collection return the number as recurring
+    if (prev[number]) return number;
+    //
+    //Otherwise
+    prev[number] = number;
+  }
+  //
+  //If no match was found return undefined
+  return undefined;
+}
+
+//
+//test the function
+console.log(recurring([2,3,4,5]));
