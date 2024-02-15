@@ -47,7 +47,20 @@ class LinkedList {
   //Mechanisim to add data to the linked list
   append(value) {
     //
+    //Create a new data node with the given value
+    const newNode = {
+      value: value,
+      next: null,
+    };
     //
+    //Update the next value to the tail
+    this.tail.next = newNode;
+    //
+    //Finally set the tail to the newly created node
+    this.tail = newNode;
+    //
+    //Increment the length of the linked list
+    this.length++;
   }
 }
 //
@@ -56,4 +69,9 @@ const myLinkedList = new LinkedList(10);
 //
 //Add values to the linked list
 myLinkedList.append(5);
+
+console.log(myLinkedList);
+
 myLinkedList.append(16);
+
+console.log(myLinkedList);
