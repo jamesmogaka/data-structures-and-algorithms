@@ -131,7 +131,7 @@ function recurring(numbers /*Array<number> */) /*:number | undefined */ {
   //A container to store all the previous values
   const prev = {};
   //
-  //Go trough all the values in the array one by one doing the following for each
+  //Go trough all the values in the array one by one doing the following for each                                      
   for (const number of numbers) {
     //
     //If there is an entry of the current number in the previous collection return the number as recurring
