@@ -9,7 +9,7 @@
 //
 //
 //Write a linked list to hold the above infomation
-//10 --> 5 --> 16
+//1 --> 10 --> 5 --> 16
 
 // const myLinkedList = {
 //   head: {
@@ -44,7 +44,7 @@ class LinkedList {
     this.length = 1;
   }
   //
-  //Mechanisim to add data to the linked list
+  //Append is adding items at the tail of the liked list
   append(value) {
     //
     //Create a new data node with the given value
@@ -62,16 +62,32 @@ class LinkedList {
     //Increment the length of the linked list
     this.length++;
   }
+  //
+  //Prepend is adding data nodes at the begining of the linked list
+  prepend(value) {
+    //
+    //First create the node using the value
+    const node = {
+      value: value,
+      next: this.head,
+    };
+    //
+    //Update the head with the new node
+    this.head = node;
+    //
+    //Increment the length
+    this.length++;
+  }
 }
 //
 //Usage of the linked list
 const myLinkedList = new LinkedList(10);
 //
-//Add values to the linked list
+//Add data to the tail end of the linked list
 myLinkedList.append(5);
-
-console.log(myLinkedList);
-
 myLinkedList.append(16);
-
+//
+//Add data from the head of the linked list
+myLinkedList.prepend(1);
+//
 console.log(myLinkedList);
