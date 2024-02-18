@@ -69,14 +69,46 @@ class LinkedList {
     //First create the node using the value
     const node = {
       value: value,
-      next: this.head,
+      next: null,
     };
+    //
+    //Add a pointer to the first element
+    node.next = this.head;
     //
     //Update the head with the new node
     this.head = node;
     //
     //Increment the length
     this.length++;
+  }
+  //
+  //Insert a given value at a given index in the linked list
+  insert(index, value) {
+    //
+    //
+  }
+  //
+  //Print the data of the linked list  in an array
+  printList() {
+    //
+    //Create an array container that will hold the list
+    const list = [];
+    //
+    //The starting point of the list
+    let currentNode = this.head;
+    //
+    //Go through the linnked list adding every element to the array collection
+    while (currentNode) {
+      //
+      //Get the value of the current node and push it to the colleciton
+      list.push(currentNode.value);
+      //
+      //Move to the next node
+      currentNode = currentNode.next;
+    }
+    //
+    //Finally print the collection of data
+    console.log(list);
   }
 }
 //
@@ -90,4 +122,5 @@ myLinkedList.append(16);
 //Add data from the head of the linked list
 myLinkedList.prepend(1);
 //
-console.log(myLinkedList);
+//Print the linked list
+myLinkedList.printList();
