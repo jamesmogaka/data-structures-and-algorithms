@@ -85,7 +85,28 @@ class LinkedList {
   //Insert a given value at a given index in the linked list
   insert(index, value) {
     //
+    //Create a new node using the value
+    const node = {
+      value: value,
+      next: null,
+    };
     //
+    //Identify the starting point of the linked list
+    let prev = this.head;
+    //
+    //Traverse to the specified index
+    for (let i = 1; i < index - 1; i++) prev = prev.next;
+    //
+    //Identify the next node in the linked list
+    const next = prev.next;
+    //
+    //Insert the node between the previous and the next by updating the pointers
+    prev.next = node;
+    //
+    node.next = next;
+    //
+    //Update the length of the linked list
+    this.length++;
   }
   //
   //Print the data of the linked list  in an array
@@ -118,6 +139,11 @@ const myLinkedList = new LinkedList(10);
 //Add data to the tail end of the linked list
 myLinkedList.append(5);
 myLinkedList.append(16);
+//
+//Add a value at a specified index
+myLinkedList.insert(2, 4);
+//
+myLinkedList.insert(2, 200);
 //
 //Add data from the head of the linked list
 myLinkedList.prepend(1);
