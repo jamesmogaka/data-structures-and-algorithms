@@ -109,6 +109,35 @@ class LinkedList {
     this.length++;
   }
   //
+  //Remove a node of the specified index from the linked list
+  remove(index) {
+    //
+    //Get a hold of the sub chain where the index is located
+    //This consist of :
+    //1.The previous
+    let prev = this.head;
+    //
+    //Iterate to the node just before the specified index
+    for (let i = 0; i < index - 1; i++) prev = prev.next;
+    //
+    //At this point we have the previous node Get:
+    //2.The node to delete
+    const current = prev.next;
+    //
+    //Finally get the node after the current in the list
+    const next = current.next;
+    //
+    //Make the previous node point to the next node leading to deletion of the current
+    //from the linked list
+    prev.next = next;
+    //
+    //Update the lengh by decrementing it
+    this.length--;
+    //
+    //Finally print the list after deletion operation is successfull
+    this.printList();
+  }
+  //
   //Print the data of the linked list  in an array
   printList() {
     //
@@ -150,3 +179,6 @@ myLinkedList.prepend(1);
 //
 //Print the linked list
 myLinkedList.printList();
+//
+//delete the node on the second index
+myLinkedList.remove(2);
