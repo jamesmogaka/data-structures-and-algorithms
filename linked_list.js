@@ -182,3 +182,180 @@ myLinkedList.printList();
 //
 //delete the node on the second index
 myLinkedList.remove(2);
+
+//
+//Doubly linked list
+class DoublyLinkedList {
+  //
+  //We need the data that will be stored in the first node since a linked list cannot be empty
+  constructor(value) {
+    //
+    //Using the given value set it as the head of the linked list
+    this.head = {
+      prev: null,
+      value: value,
+      next: null,
+    };
+    //
+    //Since we only have one node in the list it will be both the head and the tail
+    this.tail = this.head;
+    //
+    //We also should keep track of the length of the list
+    this.length = 1;
+  }
+  //
+  //Append is adding items at the tail of the liked list
+  append(value) {
+    //
+    //Create a new data node with the given value
+    const newNode = {
+      prev: this.tail,
+      value: value,
+      next: null,
+    };
+    //
+    //Update the next value to the tail
+    this.tail.next = newNode;
+    //
+    //Finally set the tail to the newly created node
+    this.tail = newNode;
+    //
+    //Increment the length of the linked list
+    this.length++;
+  }
+  //
+  //Prepend is adding data nodes at the begining of the linked list
+  prepend(value) {
+    //
+    //First create the node using the value
+    const node = {
+      prev: null,
+      value: value,
+      next: null,
+    };
+    //
+    //Add a pointer to the first element
+    node.next = this.head;
+    //
+    //Update the previous head to point to the new node
+    this.head.prev = node;
+    //
+    //Update the head with the new node
+    this.head = node;
+    //
+    //Increment the length
+    this.length++;
+  }
+  //
+  //Insert a given value at a given index in the linked list
+  insert(index, value) {
+    //
+    //Create a new node using the value
+    const node = {
+      prev: null,
+      value: value,
+      next: null,
+    };
+    //
+    //Identify the starting point of the linked list
+    let prev = this.head;
+    //
+    //Traverse to the specified index
+    for (let i = 1; i < index - 1; i++) prev = prev.next;
+    //
+    //Identify the next node in the linked list
+    const next = prev.next;
+    //
+    //Update the node to indicate the prev as the previous node
+    node.prev = prev;
+    //
+    //Insert the node between the previous and the next by updating the pointers
+    prev.next = node;
+    //
+    //Update the next node to indicate the node as the previous  node
+    next.prev = node;
+    //
+    //Reconnect the next node in the linked list
+    node.next = next;
+    //
+    //Update the length of the linked list
+    this.length++;
+  }
+  //
+  //Remove a node of the specified index from the linked list
+  remove(index) {
+    //
+    //Get a hold of the sub chain where the index is located
+    //This consist of :
+    //1.The previous
+    let prev = this.head;
+    //
+    //Iterate to the node just before the specified index
+    for (let i = 0; i < index - 1; i++) prev = prev.next;
+    //
+    //At this point we have the previous node Get:
+    //2.The node to delete
+    const current = prev.next;
+    //
+    //Finally get the node after the current in the list
+    const next = current.next;
+    //
+    //Update the previouse of the next node to be the prev node
+    next.prev = prev;
+    //
+    //Make the previous node point to the next node leading to deletion of the current
+    //from the linked list
+    prev.next = next;
+    //
+    //Update the lengh by decrementing it
+    this.length--;
+    //
+    //Finally print the list after deletion operation is successfull
+    this.printList();
+  }
+  //
+  //Print the data of the linked list  in an array
+  printList() {
+    //
+    //Create an array container that will hold the list
+    const list = [];
+    //
+    //The starting point of the list
+    let currentNode = this.head;
+    //
+    //Go through the linnked list adding every element to the array collection
+    while (currentNode) {
+      //
+      //Get the value of the current node and push it to the colleciton
+      list.push(currentNode.value);
+      //
+      //Move to the next node
+      currentNode = currentNode.next;
+    }
+    //
+    //Finally print the collection of data
+    console.log(list);
+  }
+}
+
+//
+//Usage of the linked list
+const doubly = new DoublyLinkedList(10);
+//
+//Add data to the tail end of the linked list
+doubly.append(5);
+doubly.append(16);
+//
+//Add a value at a specified index
+doubly.insert(2, 4);
+//
+doubly.insert(2, 200);
+//
+//Add data from the head of the linked list
+doubly.prepend(1);
+//
+//Print the linked list
+doubly.printList();
+//
+//delete the node on the second index
+doubly.remove(2);
