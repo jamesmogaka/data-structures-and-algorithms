@@ -160,6 +160,47 @@ class LinkedList {
     //Finally print the collection of data
     console.log(list);
   }
+  //
+  //Reverse the linked list i.e.,
+  // list of  1 --> 10 --> 16 --> 88
+  //will look like 88 --> 16 --> 10 --> 1 after it is reversed
+  reverse() {
+    //
+    //Define a starting point for taversal of the llinked list
+    let current = this.head;
+    //
+    //Create the hash map to hold the nodes values of the linked list
+    const map = {};
+    //
+    //Go through all the nodes and store their values in the map
+    for (let i = 1; i <= this.length; i++) {
+      //
+      //store the value using an index of i in the map
+      map[i] = current.value;
+      //
+      //Update the current to reference  the next node
+      current = current.next;
+    }
+    //
+    //Update the head to the last value
+    this.head = {
+      value: map[this.length],
+      next: null,
+    };
+    //
+    //Update the tail of the list
+    this.tail = this.head;
+    //
+    //Now construct a new linked list with the stored values
+    for (let i = this.length - 1; i > 0; i--) {
+      //
+      //Append the rest of the nodes to the new list
+      this.append(map[i]);
+    }
+    //
+    //Print the list finally
+    this.printList();
+  }
 }
 //
 //Usage of the linked list
@@ -179,9 +220,12 @@ myLinkedList.prepend(1);
 //
 //Print the linked list
 myLinkedList.printList();
-//
-//delete the node on the second index
-myLinkedList.remove(2);
+// //
+// //delete the node on the second index
+// myLinkedList.remove(2);
+//.
+//reverse the linked list
+myLinkedList.reverse();
 
 //
 //Doubly linked list
@@ -338,24 +382,24 @@ class DoublyLinkedList {
   }
 }
 
-//
-//Usage of the linked list
-const doubly = new DoublyLinkedList(10);
-//
-//Add data to the tail end of the linked list
-doubly.append(5);
-doubly.append(16);
-//
-//Add a value at a specified index
-doubly.insert(2, 4);
-//
-doubly.insert(2, 200);
-//
-//Add data from the head of the linked list
-doubly.prepend(1);
-//
-//Print the linked list
-doubly.printList();
-//
-//delete the node on the second index
-doubly.remove(2);
+// //
+// //Usage of the linked list
+// const doubly = new DoublyLinkedList(10);
+// //
+// //Add data to the tail end of the linked list
+// doubly.append(5);
+// doubly.append(16);
+// //
+// //Add a value at a specified index
+// doubly.insert(2, 4);
+// //
+// doubly.insert(2, 200);
+// //
+// //Add data from the head of the linked list
+// doubly.prepend(1);
+// //
+// //Print the linked list
+// doubly.printList();
+// //
+// //delete the node on the second index
+// doubly.remove(2);
