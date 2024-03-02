@@ -164,7 +164,7 @@ class LinkedList {
   //Reverse the linked list i.e.,
   // list of  1 --> 10 --> 16 --> 88
   //will look like 88 --> 16 --> 10 --> 1 after it is reversed
-  reverse() {
+  reverse1() {
     //
     //Define a starting point for taversal of the llinked list
     let current = this.head;
@@ -199,6 +199,47 @@ class LinkedList {
     }
     //
     //Print the list finally
+    this.printList();
+  }
+  //
+  //Reverse the linked list i.e.,
+  // list of  1 --> 10 --> 16 --> 88
+  //will look like 88 --> 16 --> 10 --> 1 after it is reversed
+  //
+  //1 <-- 10 <-- 16 <-- 88
+  reverse() {
+    //
+    //Get a hold of the first element in the linked list
+    let start = this.head;
+    //
+    //Update the tail to the initial head
+    this.tail = this.head;
+    //
+    //Get the secod node in the list also
+    let second = start.next;
+    //
+    //Iterate over the remaining element as long as a next node is present doing the following
+    while (second) {
+      //
+      //Get a hold of the next node in the list
+      const third = second.next;
+      //
+      //Now update the pointers to show the first is following the second
+      second.next = start;
+      //
+      //FInally update the start and second nodes whith the next elements in the list
+      start = second;
+      //
+      second = third;
+    }
+    //
+    //Make the initial head point to null
+    this.head.next = null;
+    //
+    //Now update the head of the list
+    this.head = start;
+    //
+    //Finally print the list 
     this.printList();
   }
 }
