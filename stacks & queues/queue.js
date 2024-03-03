@@ -27,15 +27,82 @@ class Queue {
     this.length = 0;
   }
   //
+  // Show the first node in the queue
+  peek() {
+    //
+    return this.first;
+  }
   //
-  peek() {}
+  //Given a value create a node and add it to the linked list
+  enqueue(value) {
+    //
+    //Create a new node
+    const node = new Node(value);
+    //
+    //Check if the list is empty
+    if (this.isEmpty) {
+      //
+      //The node is first in list
+      this.first = node;
+      //
+      //This means it also last in the queue since its the only node
+      this.last = this.first;
+    } else {
+      //
+      //Update the current last nodes next to point to the new node
+      this.last.next = node;
+      //
+      //Update the last node to be the new node
+      this.last = node;
+    }
+    //
+    //Increment the length of the list to signify the added node
+    this.length++;
+    //
+    //Return the new list
+    return this;
+  }
   //
+  //THis removes the first element from the queue
+  dequeue() {
+    //
+    //If the queue is empty return
+    if (this.isEmpty) return;
+    //
+    //If there is only one element clear the last also
+    if (this.first === this.last) this.last = null;
+    //
+    //Store the first element in the list
+    const dequeued = this.head;
+    //
+    //Make the second element the head
+    this.head = this.head.next;
+    //
+    //Return the just dequeued node
+    return dequeued.value;
+  }
   //
-  enqueue() {}
-  //
-  //
-  dequeue() {}
-  //
-  //
-  isEmpty() {}
+  //Check if there is any node in the list
+  //If none is present return true elese false
+  isEmpty() {
+    return this.length === 0 ? true : false;
+  }
 }
+//
+//
+const myQueue = new Queue();
+//
+//
+console.log(myQueue.enqueue(""));
+console.log(myQueue.enqueue(""));
+console.log(myQueue.enqueue(""));
+console.log(myQueue.enqueue(""));
+console.log(myQueue.enqueue(""));
+//
+//
+console.log(myQueue.dequeue());
+console.log(myQueue.dequeue());
+console.log(myQueue.dequeue());
+//
+//
+console.log(myQueue.peek());
