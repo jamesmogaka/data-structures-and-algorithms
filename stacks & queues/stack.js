@@ -14,8 +14,8 @@ class Node {
   }
 }
 //
-//Implementation of the custom stack
-class Stack {
+//Implementation of the custom stack based on a linked list
+class Stack1 {
   //
   constructor() {
     //
@@ -75,6 +75,9 @@ class Stack {
     //If the list is empty do nothing
     if (this.isEmpty()) return undefined;
     //
+    //If only one element exist clear the bottom
+    if (this.top === this.bottom) this.bottom = null;
+    //
     //Store the initial top
     const popped = this.top;
     //
@@ -93,6 +96,72 @@ class Stack {
     //
     //Check the length to see if there is any node in the stack
     return this.length === 0 ? true : false;
+  }
+}
+
+//
+//Implementation of the custom stack based on an array
+class Stack {
+  //
+  constructor() {
+    //
+    //The array that will store the data
+    this.data = [];
+    //
+    //Keep track of the top most node in the stack.
+    this.top = null;
+    //
+    //Keep track of the first element to be pushed to the stack. At the start there are no nodes in the stack
+    this.bottom = null;
+  }
+  //
+  //Look at the element that is on top of the stack
+  peek() {
+    //
+    //Return the top element
+    return this.top;
+  }
+  //
+  //Given a value add it to the stack and update the top to reflect the added value
+  push(value) {
+    //
+    //Add the value to the data container
+    this.data.push(value);
+    //
+    //Update the top
+    this.top = this.data[this.data.length - 1];
+    //
+    //Update the bottom
+    this.bottom = this.data[0];
+    //
+    //return the stack
+    return this;
+  }
+  //
+  //This removes the top most element from the stack
+  pop() {
+    //
+    //If the list is empty do nothing
+    if (this.isEmpty()) return undefined;
+    //
+    //Get a hold of the item to be removed
+    const popped = this.top;
+    //
+    //popp the item from the stack
+    this.data.pop();
+    //
+    //Update the top of the stack
+    this.top = this.data[this.data.length - 1];
+    //
+    //Return the just poped item
+    return popped;
+  }
+  //
+  //Check if ther is any node in the linked list and returns a true if no node exists otherwise a false
+  isEmpty() {
+    //
+    //Check the length to see if there is any node in the stack
+    return this.data.length === 0 ? true : false;
   }
 }
 //
