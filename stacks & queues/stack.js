@@ -42,8 +42,6 @@ class Stack {
     //
     //Create a new node with the value
     const node = new Node(value);
-
-    const res = this.isEmpty();
     //
     //If the list is empty we need to add the node as both the top and bottom node
     if (this.isEmpty()) {
@@ -53,18 +51,17 @@ class Stack {
       //
       //Since there is one node in the stack the top is the same node that is the bottom
       this.top = this.bottom;
+    } else {
       //
-      //Increment the length of the list
-      this.length++;
+      //Get the top element
+      const first = this.top;
       //
-      return this;
+      //Update the top to be the new node
+      this.top = node;
+      //
+      //Make th next node of the top to be the initial top node
+      this.top.next = first;
     }
-    //
-    //If the list alredy has other nodes we just append the current node to be the top next and change the top to the node
-    this.top.next = node;
-    //
-    //Update the top to the new node
-    this.top = node;
     //
     //Update the length of the stack
     this.length++;
@@ -78,38 +75,11 @@ class Stack {
     //If the list is empty do nothing
     if (this.isEmpty()) return undefined;
     //
-    //If there is only one node in the list
-    if (this.length === 1) {
-      //
-      //Store the element to be removed
-      const popped = this.bottom;
-      //
-      //Delete the bottom
-      delete this.bottom;
-      //
-      //Update the top to a null
-      this.top = null;
-      //
-      //Decrement the length
-      this.length--;
-      //
-      return popped.value;
-    }
-    //
     //Store the initial top
     const popped = this.top;
     //
-    //Define the starting point of the navigation
-    let next = this.bottom;
-    //
-    //Navigate to the second last item from the top
-    for (let i = 1; i < this.length - 1; i++) next = next.next;
-    //
-    //Update its next pointer to point to nulll
-    next.next = null;
-    //
-    //Finally change the top to the new element
-    this.top = next;
+    //Update the top to the next node after the top
+    this.top = this.top.next;
     //
     //Update the length of the stack
     this.length--;
