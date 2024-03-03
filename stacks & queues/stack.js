@@ -107,19 +107,13 @@ class Stack {
     //
     //The array that will store the data
     this.data = [];
-    //
-    //Keep track of the top most node in the stack.
-    this.top = null;
-    //
-    //Keep track of the first element to be pushed to the stack. At the start there are no nodes in the stack
-    this.bottom = null;
   }
   //
   //Look at the element that is on top of the stack
   peek() {
     //
     //Return the top element
-    return this.top;
+    return this.data[this.data.length - 1];
   }
   //
   //Given a value add it to the stack and update the top to reflect the added value
@@ -128,12 +122,6 @@ class Stack {
     //Add the value to the data container
     this.data.push(value);
     //
-    //Update the top
-    this.top = this.data[this.data.length - 1];
-    //
-    //Update the bottom
-    this.bottom = this.data[0];
-    //
     //return the stack
     return this;
   }
@@ -141,27 +129,14 @@ class Stack {
   //This removes the top most element from the stack
   pop() {
     //
-    //If the list is empty do nothing
-    if (this.isEmpty()) return undefined;
-    //
     //Get a hold of the item to be removed
-    const popped = this.top;
+    const popped = this.peek();
     //
     //popp the item from the stack
     this.data.pop();
     //
-    //Update the top of the stack
-    this.top = this.data[this.data.length - 1];
-    //
     //Return the just poped item
     return popped;
-  }
-  //
-  //Check if ther is any node in the linked list and returns a true if no node exists otherwise a false
-  isEmpty() {
-    //
-    //Check the length to see if there is any node in the stack
-    return this.data.length === 0 ? true : false;
   }
 }
 //
