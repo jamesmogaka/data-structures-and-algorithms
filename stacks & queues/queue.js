@@ -40,7 +40,7 @@ class Queue {
     const node = new Node(value);
     //
     //Check if the list is empty
-    if (this.isEmpty) {
+    if (this.isEmpty()) {
       //
       //The node is first in list
       this.first = node;
@@ -67,16 +67,16 @@ class Queue {
   dequeue() {
     //
     //If the queue is empty return
-    if (this.isEmpty) return;
+    if (this.isEmpty()) return;
     //
     //If there is only one element clear the last also
     if (this.first === this.last) this.last = null;
     //
     //Store the first element in the list
-    const dequeued = this.head;
+    const dequeued = this.first;
     //
     //Make the second element the head
-    this.head = this.head.next;
+    this.first = this.first.next;
     //
     //Return the just dequeued node
     return dequeued.value;
@@ -89,20 +89,24 @@ class Queue {
   }
 }
 //
-//
+//Creating an instance of the queue
 const myQueue = new Queue();
 //
+//Adding nodes to the queue
+console.log(myQueue.enqueue("joy"));
+console.log(myQueue.enqueue("Matt"));
+console.log(myQueue.enqueue("pavel"));
+console.log(myQueue.enqueue("samir"));
 //
-console.log(myQueue.enqueue(""));
-console.log(myQueue.enqueue(""));
-console.log(myQueue.enqueue(""));
-console.log(myQueue.enqueue(""));
-console.log(myQueue.enqueue(""));
-//
-//
+//Removing nodes from the queue
 console.log(myQueue.dequeue());
 console.log(myQueue.dequeue());
 console.log(myQueue.dequeue());
+//
+//Check the queue
+console.log(myQueue);
 //
 //
 console.log(myQueue.peek());
+//
+//TODO-Implement a queue using a stack
