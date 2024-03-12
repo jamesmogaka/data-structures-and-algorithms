@@ -31,7 +31,38 @@ class BinarySearchTree {
   //1.Each node can have a maximum of 2 child nodes only
   //2.For each node The left child is less than the node and the right child
   //is greater than the node
-  insert(value) {}
+  insert(value) {
+    //
+    //Create a node with the given value
+    const node = new Node(value);
+    //
+    //Check if the tree is empty
+    if (!this.root) this.root = node;
+    else {
+      //
+      //Mark the starting point of the treversal operation
+      let current = this.root;
+      //
+      //The node that was treversed just befor the current node
+      let prev;
+      //
+      //Traverse till the current node is null
+      while (current) {
+        //
+        //Store the previous current
+        prev = current;
+        //
+        //Searching for the next current
+        current = current.value > node.value ? current.left : current.right;
+      }
+      //
+      //After the traversal we now know the previous is the last node and we can insert the new node
+      prev.value > node.value ? (prev.left = node) : (prev.right = node);
+      //
+      //we finally return the tree
+      return this.root;
+    }
+  }
   //
   //
   lookup(value) {}
@@ -67,3 +98,6 @@ function traverse(node) {
   tree.right = node.right === null ? null : traverse(node.right);
   return tree;
 }
+//
+//Check to see if the tree is correct
+console.log(traverse(tree.root));
