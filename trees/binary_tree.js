@@ -64,8 +64,28 @@ class BinarySearchTree {
     }
   }
   //
-  //
-  lookup(value) {}
+  //Given a value go through the binary search tree and identify the value in the binary tree or
+  //an undefined if the value is not in the tree
+  lookup(value) {
+    //
+    //Starting proint of the traversal
+    let current = this.root;
+    //
+    //Iterate over the nodes as long as the current is present
+    while (current) {
+      //
+      //Check to see if the current maches the value
+      if (current.value === value) return current;
+      else {
+        //
+        //We need to update the current value
+        current = current.value > value ? current.left : current.right;
+      }
+    }
+    //
+    //When we reach here we know that the value we are looking for is not in the list
+    return undefined;
+  }
   //
   //
   remove(value) {}
@@ -84,6 +104,10 @@ tree.insert(20);
 tree.insert(15);
 tree.insert(170);
 //
+//Looking using the tree lookup
+console.log(tree.lookup(170));
+console.log(tree.lookup(9));
+//
 //Try to get the binary tree below
 /*
             9
@@ -100,4 +124,4 @@ function traverse(node) {
 }
 //
 //Check to see if the tree is correct
-console.log(traverse(tree.root));
+// console.log(traverse(tree.root));
