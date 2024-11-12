@@ -1,7 +1,5 @@
 //
 //Useful for storing key value pairs
-//
-//
 const user = {
   age: 23,
   name: "james",
@@ -10,7 +8,6 @@ const user = {
     console.log("You are poor oooh!!!");
   },
 };
-
 //
 //Access/ look up - O(1) or O(n) -where there is collision
 user.age;
@@ -21,9 +18,11 @@ user.age;
 user.skills = "coding";
 //
 //Search- O(1)
-
 //
-//Implement our own version of hash table
+//The worst case scenario for all the opertions of a hash map is linear time O(n) in cases where
+//there is collision
+//
+//Implement our own version of hash table based on an array
 class myHashTable {
   constructor(size) {
     //
@@ -32,6 +31,8 @@ class myHashTable {
   }
   //
   //Hash function that generates the storage address of a given key
+  //NB:Since js has no inbuild access modifiers js developers use an underbar befor a method to denote
+  //the method is private
   _hash(key) {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
@@ -45,7 +46,6 @@ class myHashTable {
     //
     //Using the hashing function generate the address to store the given key value pair
     const address = this._hash(key);
-    //
     //
     //Check the given address to ensure that no data exist initially
     if (!this.data[address]) {
@@ -131,7 +131,7 @@ function recurring(numbers /*Array<number> */) /*:number | undefined */ {
   //A container to store all the previous values
   const prev = {};
   //
-  //Go trough all the values in the array one by one doing the following for each                                      
+  //Go trough all the values in the array one by one doing the following for each
   for (const number of numbers) {
     //
     //If there is an entry of the current number in the previous collection return the number as recurring
@@ -147,4 +147,4 @@ function recurring(numbers /*Array<number> */) /*:number | undefined */ {
 
 //
 //test the function
-console.log(recurring([2,3,4,5]));
+console.log(recurring([2, 3, 4, 5]));

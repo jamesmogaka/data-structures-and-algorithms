@@ -2,16 +2,19 @@
 const letters = ["a", "b", "c", "d", "e"];
 //
 //Operations
-//Lookup/Access O(1) -constant time
+//Lookup/Access O(1) -constant time. This is because items stored in an array are indexed
 letters[2];
 //
-//Push -insert at last index O(1) -constant time
+//Push -insert at last index O(1) -constant time. There some instances where it could take up to O(n)
+//This is when the array is filled up and we need to create a new array with additional space the copy
+//the contents into the new array and insert the new element
 letters.push("f");
 //
 //Pop - deletion at last index O(1) -constant time
 letters.pop();
 //
-//Insert at first index O(n) - linear time
+//Insert at first index O(n) - linear time. This is because we always move elements in the worst case
+// we could end up moving every element in the array
 letters.unshift("james");
 //There is iteration over all  items to change their indices
 //
@@ -20,12 +23,11 @@ letters.splice(2, 0, "King");
 //
 //Deletion of any item apart form the last item O(n) - linear time
 letters.splice(2, 1);
-
 //
 //Custom array implementation
 class MyArray {
   //
-  //
+  //We will use a hashmap which contains values and is indexed by a number
   constructor() {
     this.length = 0;
     this.data = {};
@@ -33,6 +35,8 @@ class MyArray {
   //
   //Retrieve item of given index
   get(index) {
+    //
+    //NB: If such an index does not exist then by default undefined will be returned
     return this.data[index];
   }
   //
@@ -76,7 +80,11 @@ class MyArray {
   }
   //
   //Shift the elements
+  //Private method
   shift(index) {
+    //
+    //TODO: Ensure that the index gotten is an integer
+    if (typeof index !== "number") return;
     //
     //Change the index of every element from specified index
     for (let i = index; i < this.length; i++) {
@@ -114,7 +122,7 @@ function reversString(str) {
   //Divide the string into individual characters
   const characterArray = str.split("");
   //
-  //
+  //The collection to hold the reversed string characters
   const reverseArray = [];
   //
   //Iterate over the character array creating a revers array
@@ -126,7 +134,7 @@ function reversString(str) {
   return reverseArray.join();
 }
 //
-//
+//NB: A string is essentially an array of characters
 function reverseString1(str) {
   //
   //Create array to hold outcome of reversing
