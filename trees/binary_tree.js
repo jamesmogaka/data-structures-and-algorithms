@@ -87,8 +87,66 @@ class BinarySearchTree {
     return undefined;
   }
   //
-  //
-  remove(value) {}
+  //Given a value identify it in the tree then remove it and work on how to
+  //replace the value with its largest child (child node in the right)
+  remove(value) {
+    //
+    //Check if the tree is empty
+    if (!this.root) return false;
+    //
+    //starting point
+    let current = this.root;
+    //
+    //The node just before the current
+    let prev;
+    //
+    //As long as there is a current node traverse to the given value
+    while (current) {
+      //
+      //Check if the current is the value we are serching for
+      if (current.value === value) break;
+      //
+      //Store the current as the previous node
+      prev = current;
+      //
+      //Now chech the values to see if we will head to the left or the right
+      current = current.value > value ? current.left : current.right;
+    }
+    //
+    //At this point we know that we either did not find the value
+    // or we found the value
+    //The first thin is to ensure that the value is there otherwise return a -1
+    if (!current) return false;
+    //
+    //In a case where the previous value is larger than the current
+    //We should be updating the left of the previous otherwise the right
+    if (prev.value > current.value) {
+      //
+      //Update the left child of the previous
+      if (current.right) {
+        //
+        //Update the left to the right of the parent
+        prev.left = current.right;
+        //
+        //Then attach the current left to the left of the prev.left
+        prev.left.left = current.left;
+      } else prev.left = current.left;
+    } else {
+      //
+      //Update the left child of the previous
+      if (current.right) {
+        //
+        //Update the left to the right of the parent
+        prev.right = current.right;
+        //
+        //Then attach the current left to the left of the prev.left
+        prev.right.left = current.left;
+      } else prev.right = current.left;
+    }
+    //
+    //return the just removed value
+    return current.value;
+  }
 }
 
 //
@@ -105,8 +163,12 @@ tree.insert(15);
 tree.insert(170);
 //
 //Looking using the tree lookup
-console.log(tree.lookup(170));
-console.log(tree.lookup(9));
+// console.log(tree.lookup(170));
+// console.log(tree.lookup(9));
+//
+//Removing nodes from the tree
+console.log(tree.remove(20));
+console.log(tree.remove(170));
 //
 //Try to get the binary tree below
 /*
@@ -124,4 +186,4 @@ function traverse(node) {
 }
 //
 //Check to see if the tree is correct
-// console.log(traverse(tree.root));
+console.log(traverse(tree.root));
